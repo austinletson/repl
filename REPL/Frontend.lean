@@ -38,7 +38,7 @@ where
          , initialSnap := initialSnap
        }, snap.data.finishedSnap.get.infoTree?)
     if let some next := snap.nextCmdSnap? then
-      result :: go initialSnap next.task commands
+      result :: go initialSnap next commands
     else
       [result]
 

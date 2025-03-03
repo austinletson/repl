@@ -32,6 +32,6 @@ def unpickle (path : FilePath) : IO (Environment × CompactedRegion) := unsafe d
   let ((imports, map₂), region) ← _root_.unpickle (Array Import × PHashMap Name ConstantInfo) path
   enableInitializersExecution
   let env ← importModules imports {} 0
-  return (← env.replay (Std.HashMap.ofList map₂.toList), region)
+  return (← env.replay (HashMap.ofList map₂.toList), region)
 
 end Lean.Environment
