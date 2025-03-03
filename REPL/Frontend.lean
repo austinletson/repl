@@ -20,7 +20,7 @@ partial def IO.processCommandsIncrementally' (inputCtx : Parser.InputContext)
 where
   go initialSnap t commands :=
     let snap := t.get
-    let commands := commands.push snap
+    let commands := commands.push snap.data
     -- Opting into reuse also enables incremental reporting, so make sure to collect messages from
     -- all snapshots
     let messages := toSnapshotTree initialSnap
@@ -30,13 +30,13 @@ where
     -- snapshots as they subsume any info trees reported incrementally by their children.
     let trees := commands.map (·.finishedSnap.get.infoTree?) |>.filterMap id |>.toPArray'
     let result : (IncrementalState × Option InfoTree) :=
-      ({ commandState := { snap.finishedSnap.get.cmdState with messages, infoState.trees := trees }
-         , parserState := snap.parserState
-         , cmdPos := snap.parserState.pos
+      ({ commandState := { snap.data.finishedSnap.get.cmdState with messages, infoState.trees := trees }
+         , parserState := snap.data.parserState
+         , cmdPos := snap.data.parserState.pos
          , commands := commands.map (·.stx)
          , inputCtx := inputCtx
          , initialSnap := initialSnap
-       }, snap.finishedSnap.get.infoTree?)
+       }, snap.data.finishedSnap.get.infoTree?)
     if let some next := snap.nextCmdSnap? then
       result :: go initialSnap next.task commands
     else
