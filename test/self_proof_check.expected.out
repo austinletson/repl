@@ -37,17 +37,7 @@
  "Lean error:\n`exact?` could not close the goal. Try `apply?` to see partial suggestions."}
 
 {"tactics":
- [{"usedConstants":
-   ["False",
-    "sorryAx",
-    "instOfNatNat",
-    "Lean.Name.num",
-    "Lean.Name.str",
-    "Lean.Name.anonymous",
-    "Nat",
-    "Lean.Name",
-    "OfNat.ofNat",
-    "Bool.false"],
+ [{"usedConstants": ["False", "sorryAx", "Bool.false"],
    "tactic": "sorry",
    "proofState": 3,
    "pos": {"line": 1, "column": 25},
