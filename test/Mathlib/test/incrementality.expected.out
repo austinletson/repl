@@ -27,7 +27,7 @@
    "tactic": "rfl",
    "proofState": 1,
    "pos": {"line": 10, "column": 2},
-   "goals": "α✝ : Sort u_1\nn : α✝\n⊢ n = n",
+   "goals": "α✝ : Sort u_1 n : α✝ ⊢ n = n",
    "endPos": {"line": 10, "column": 5}}],
  "messages":
  [{"severity": "info",
@@ -65,7 +65,7 @@
    "tactic": "rfl",
    "proofState": 3,
    "pos": {"line": 10, "column": 2},
-   "goals": "n : ℕ\n⊢ n = n + 0",
+   "goals": "n : ℕ ⊢ n = n + 0",
    "endPos": {"line": 10, "column": 5}}],
  "messages":
  [{"severity": "info",

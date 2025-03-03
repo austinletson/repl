@@ -141,7 +141,7 @@ def findBestIncrementalState (newCmd : String) (envId? : Option Nat) : M m (Opti
 
 def sorries (trees : List InfoTree) (env? : Option Environment) (rootGoals? : Option (List MVarId))
 : M m (List Sorry) :=
-  trees.flatMap InfoTree.sorries |>.filter (fun t => match t.2.1 with
+  trees.bind InfoTree.sorries |>.filter (fun t => match t.2.1 with
     | .term _ none => false
     | _ => true ) |>.mapM
       fun ⟨ctx, g, pos, endPos⟩ => do
@@ -173,7 +173,7 @@ def ppTactic (ctx : ContextInfo) (stx : Syntax) : IO Format :=
     pure "<failed to pretty print>"
 
 def tactics (trees : List InfoTree) (env? : Option Environment) : M m (List Tactic) :=
-  trees.flatMap InfoTree.tactics |>.mapM
+  trees.bind InfoTree.tactics |>.mapM
     fun ⟨ctx, stx, rootGoals, goals, pos, endPos, ns⟩ => do
       let proofState := some (← ProofSnapshot.create ctx none env? goals rootGoals)
       let goals := s!"{(← ctx.ppGoals goals)}".trim
@@ -190,7 +190,7 @@ def tacticsCmd (treeList : List (IncrementalState × Option InfoTree)) (prevEnv 
     return ts ++ restTactics
 
 def collectRootGoalsAsSorries (trees : List InfoTree) (env? : Option Environment) : M m (List Sorry) := do
-  trees.flatMap InfoTree.rootGoals |>.mapM
+  trees.bind InfoTree.rootGoals |>.mapM
     fun ⟨ctx, goals, pos⟩ => do
       let proofState := some (← ProofSnapshot.create ctx none env? goals goals)
       let goals := s!"{(← ctx.ppGoals goals)}".trim
@@ -357,6 +357,14 @@ def unpickleProofSnapshot (n : UnpickleProofState) : M IO (ProofStepResponse ⊕
   let (proofState, _) ← ProofSnapshot.unpickle n.unpickleProofStateFrom cmdSnapshot?
   Sum.inl <$> createProofStepReponse proofState
 
+partial def filterRootTactics (tree : InfoTree) : Bool :=
+  match tree with
+  | InfoTree.hole _     => true
+  | InfoTree.context _ t => filterRootTactics t
+  | InfoTree.node i _   => match i with
+      | .ofTacticInfo _ => false
+      | _ => true
+
 /--
 Run a command, returning the id of the new environment, and any messages and sorries.
 -/
@@ -407,13 +415,14 @@ def runCommand (s : Command) : M IO (CommandResponse ⊕ Error) := do
         cancelTk? := none } }
   let env ← recordCommandSnapshot cmdSnapshot
   let trees := cmdState.infoState.trees.toList
+  let trees := trees.filter filterRootTactics
   -- For debugging purposes, sometimes we print out the trees here:
   -- trees.forM fun t => do IO.println (← t.format)
   let jsonTrees := match s.infotree with
   | some "full" => trees
-  | some "tactics" => trees.flatMap InfoTree.retainTacticInfo
-  | some "original" => trees.flatMap InfoTree.retainTacticInfo |>.flatMap InfoTree.retainOriginal
-  | some "substantive" => trees.flatMap InfoTree.retainTacticInfo |>.flatMap InfoTree.retainSubstantive
+  | some "tactics" => trees.bind InfoTree.retainTacticInfo
+  | some "original" => trees.bind InfoTree.retainTacticInfo |>.bind InfoTree.retainOriginal
+  | some "substantive" => trees.bind InfoTree.retainTacticInfo |>.bind InfoTree.retainSubstantive
   | _ => []
   let infotree ← if jsonTrees.isEmpty then
     pure none

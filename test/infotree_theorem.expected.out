@@ -168,21 +168,21 @@
        "pp": "by exact h",
        "kind": "Lean.Parser.Term.byTactic",
        "argKinds": ["by", "Lean.Parser.Tactic.tacticSeq"]},
-      "isBinder": false,
-      "expr": "h",
-      "elaborator": "MutualDef.body"},
-     "kind": "TermInfo",
+      "name": "Lean.Parser.Term.byTactic",
+      "goalsBefore": ["p : Prop\nh : p\n⊢ p"],
+      "goalsAfter": []},
+     "kind": "TacticInfo",
      "children":
      [{"node":
        {"stx":
         {"range":
          {"synthetic": false,
           "start": {"line": 1, "column": 40},
-          "finish": {"line": 1, "column": 50}},
-         "pp": "by exact h",
-         "kind": "Lean.Parser.Term.byTactic",
-         "argKinds": ["by", "Lean.Parser.Tactic.tacticSeq"]},
-        "name": "Lean.Parser.Term.byTactic",
+          "finish": {"line": 1, "column": 42}},
+         "pp": "<failed to pretty print>",
+         "kind": "by",
+         "argKinds": []},
+        "name": null,
         "goalsBefore": ["p : Prop\nh : p\n⊢ p"],
         "goalsAfter": []},
        "kind": "TacticInfo",
@@ -191,12 +191,12 @@
          {"stx":
           {"range":
            {"synthetic": false,
-            "start": {"line": 1, "column": 40},
-            "finish": {"line": 1, "column": 42}},
-           "pp": "<failed to pretty print>",
-           "kind": "by",
-           "argKinds": []},
-          "name": null,
+            "start": {"line": 1, "column": 43},
+            "finish": {"line": 1, "column": 50}},
+           "pp": "exact h",
+           "kind": "Lean.Parser.Tactic.tacticSeq",
+           "argKinds": ["Lean.Parser.Tactic.tacticSeq1Indented"]},
+          "name": "Lean.Parser.Tactic.tacticSeq",
           "goalsBefore": ["p : Prop\nh : p\n⊢ p"],
           "goalsAfter": []},
          "kind": "TacticInfo",
@@ -208,9 +208,9 @@
               "start": {"line": 1, "column": 43},
               "finish": {"line": 1, "column": 50}},
              "pp": "exact h",
-             "kind": "Lean.Parser.Tactic.tacticSeq",
-             "argKinds": ["Lean.Parser.Tactic.tacticSeq1Indented"]},
-            "name": "Lean.Parser.Tactic.tacticSeq",
+             "kind": "Lean.Parser.Tactic.tacticSeq1Indented",
+             "argKinds": ["null"]},
+            "name": "Lean.Parser.Tactic.tacticSeq1Indented",
             "goalsBefore": ["p : Prop\nh : p\n⊢ p"],
             "goalsAfter": []},
            "kind": "TacticInfo",
@@ -222,9 +222,9 @@
                 "start": {"line": 1, "column": 43},
                 "finish": {"line": 1, "column": 50}},
                "pp": "exact h",
-               "kind": "Lean.Parser.Tactic.tacticSeq1Indented",
-               "argKinds": ["null"]},
-              "name": "Lean.Parser.Tactic.tacticSeq1Indented",
+               "kind": "Lean.Parser.Tactic.exact",
+               "argKinds": ["exact", "ident"]},
+              "name": "Lean.Parser.Tactic.exact",
               "goalsBefore": ["p : Prop\nh : p\n⊢ p"],
               "goalsAfter": []},
              "kind": "TacticInfo",
@@ -233,17 +233,19 @@
                {"stx":
                 {"range":
                  {"synthetic": false,
-                  "start": {"line": 1, "column": 43},
+                  "start": {"line": 1, "column": 49},
                   "finish": {"line": 1, "column": 50}},
-                 "pp": "exact h",
-                 "kind": "Lean.Parser.Tactic.exact",
-                 "argKinds": ["exact", "ident"]},
-                "name": "Lean.Parser.Tactic.exact",
-                "goalsBefore": ["p : Prop\nh : p\n⊢ p"],
-                "goalsAfter": []},
-               "kind": "TacticInfo",
+                 "pp": "h",
+                 "kind": "ident",
+                 "argKinds": []},
+                "isBinder": false,
+                "expr": "h",
+                "expectedType": "p",
+                "elaborator": "Lean.Elab.Term.elabIdent"},
+               "kind": "TermInfo",
                "children":
-               [{"node":
+               [{"node": null, "kind": "CompletionInfo", "children": []},
+                {"node":
                  {"stx":
                   {"range":
                    {"synthetic": false,
@@ -255,25 +257,9 @@
                   "isBinder": false,
                   "expr": "h",
                   "expectedType": "p",
-                  "elaborator": "Lean.Elab.Term.elabIdent"},
+                  "elaborator": null},
                  "kind": "TermInfo",
-                 "children":
-                 [{"node": null, "kind": "CompletionInfo", "children": []},
-                  {"node":
-                   {"stx":
-                    {"range":
-                     {"synthetic": false,
-                      "start": {"line": 1, "column": 49},
-                      "finish": {"line": 1, "column": 50}},
-                     "pp": "h",
-                     "kind": "ident",
-                     "argKinds": []},
-                    "isBinder": false,
-                    "expr": "h",
-                    "expectedType": "p",
-                    "elaborator": null},
-                   "kind": "TermInfo",
-                   "children": []}]}]}]}]}]}]}]},
+                 "children": []}]}]}]}]}]}]},
     {"node":
      {"stx":
       {"range":

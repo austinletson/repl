@@ -89,7 +89,7 @@ structure Sorry where
 deriving FromJson
 
 instance : ToJson Sorry where
-  toJson r := Json.mkObj <| .flatten [
+  toJson r := Json.mkObj <| .join [
     [("goal", r.goal)],
     [("proofState", toJson r.proofState)],
     if r.pos.line ≠ 0 then [("pos", toJson r.pos)] else [],
@@ -224,7 +224,7 @@ def Json.nonemptyList [ToJson α] (k : String) : List α → List (String × Jso
   | l  => [⟨k, toJson l⟩]
 
 instance : ToJson CommandResponse where
-  toJson r := Json.mkObj <| .flatten [
+  toJson r := Json.mkObj <| .join [
     [("env", r.env)],
     Json.nonemptyList "messages" r.messages,
     Json.nonemptyList "sorries" r.sorries,
@@ -247,7 +247,7 @@ structure ProofStepResponse where
 deriving ToJson, FromJson
 
 instance : ToJson ProofStepResponse where
-  toJson r := Json.mkObj <| .flatten [
+  toJson r := Json.mkObj <| .join [
     [("proofState", r.proofState)],
     [("goals", toJson r.goals)],
     Json.nonemptyList "messages" r.messages,

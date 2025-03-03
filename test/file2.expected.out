@@ -17,7 +17,7 @@
    "tactic": "rw [Nat.add_assoc, Nat.add_comm y, h1]",
    "proofState": 0,
    "pos": {"line": 7, "column": 2},
-   "goals": "x y z : Nat\n⊢ x + y + (z + a) = x + (z + b + y)",
+   "goals": "x y z : Nat ⊢ x + y + (z + a) = x + (z + b + y)",
    "endPos": {"line": 7, "column": 40}}],
  "env": 0}
 

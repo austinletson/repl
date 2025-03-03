@@ -9,7 +9,7 @@
    "tactic": "exact t",
    "proofState": 1,
    "pos": {"line": 1, "column": 32},
-   "goals": "t : Nat\n⊢ Nat",
+   "goals": "t : Nat ⊢ Nat",
    "endPos": {"line": 1, "column": 39}}],
  "env": 0}
 
