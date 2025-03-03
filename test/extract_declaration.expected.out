@@ -164,17 +164,17 @@
   {"value": null,
    "type":
    {"range":
-    {"synthetic": true,
-     "start": {"line": 1, "column": 0},
-     "finish": {"line": 1, "column": 0}},
-    "pp": "",
+    {"synthetic": false,
+     "start": {"line": 22, "column": 33},
+     "finish": {"line": 22, "column": 39}},
+    "pp": ": Type",
     "constants": []},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 22, "column": 23},
-     "finish": {"line": 22, "column": 32}},
-    "pp": "(k : Nat)",
+     "finish": {"line": 22, "column": 39}},
+    "pp": "(k : Nat) : Type",
     "constants": ["Nat", "k"]},
    "scope":
    {"varDecls": ["variable {α : Type u}"],
