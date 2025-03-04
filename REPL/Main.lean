@@ -14,7 +14,6 @@ import REPL.Lean.InfoTree.ToJson
 import REPL.Snapshots
 import REPL.Util.Trie
 import Lean.Data.Trie
-import Std.Data.HashMap
 
 /-!
 # A REPL for Lean.
@@ -80,12 +79,12 @@ structure State where
   Trie-based storage for fast prefix matching, organized by environment ID.
   Map from environment ID (None for fresh env) to trie of command prefixes with incremental states.
   -/
-  envTries : Std.HashMap (Option Nat) (Lean.Data.Trie IncrementalState) := Std.HashMap.empty 8
+  envTries : HashMap (Option Nat) (Lean.Data.Trie IncrementalState) := HashMap.empty
   /--
   Cache for processed headers (import statements) to avoid reprocessing the same imports repeatedly.
   Maps import raw string to the processed command state.
   -/
-  headerCache : Std.HashMap String Command.State := Std.HashMap.empty 8
+  headerCache : HashMap String Command.State := HashMap.empty
 
 /--
 The Lean REPL monad.
@@ -106,7 +105,7 @@ def recordCommandSnapshot (state : CommandSnapshot) : M m Nat := do
 def addCommandToTrie (cmdText : String)
     (incStates : List (IncrementalState × Option InfoTree)) (envId? : Option Nat) : M m Unit := do
   let state ← get
-  let currentTrie := state.envTries.get? envId? |>.getD Lean.Data.Trie.empty
+  let currentTrie := state.envTries.find? envId? |>.getD Lean.Data.Trie.empty
 
   let mut newTrie := currentTrie
   for (incState, _) in incStates do
@@ -131,7 +130,7 @@ def recordProofSnapshot (proofState : ProofSnapshot) : M m Nat := do
 def findBestIncrementalState (newCmd : String) (envId? : Option Nat) : M m (Option IncrementalState) := do
   let state ← get
   let trimmedCmd := newCmd.trim
-  let trie? := state.envTries.get? envId?
+  let trie? := state.envTries.find? envId?
   match trie? with
   | none => return none
   | some trie =>

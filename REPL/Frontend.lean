@@ -4,7 +4,6 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Scott Morrison
 -/
 import Lean.Elab.Frontend
-import Std.Data.HashMap
 
 open Lean Elab Language
 
@@ -68,9 +67,9 @@ Returns:
 -/
 def processInput (input : String) (cmdState? : Option Command.State)
     (incrementalState? : Option IncrementalState := none)
-    (headerCache : Std.HashMap String Command.State)
+    (headerCache : HashMap String Command.State)
     (opts : Options := {}) (fileName : Option String := none) :
-    IO (Command.State × List (IncrementalState × Option InfoTree) × List Message × (Std.HashMap String Command.State)) := unsafe do
+    IO (Command.State × List (IncrementalState × Option InfoTree) × List Message × (HashMap String Command.State)) := unsafe do
   Lean.initSearchPath (← Lean.findSysroot)
   enableInitializersExecution
   let fileName   := fileName.getD "<input>"
@@ -79,7 +78,7 @@ def processInput (input : String) (cmdState? : Option Command.State)
   | none => do
     let (header, parserState, messages) ← Parser.parseHeader inputCtx
     let importKey := toString header -- do not contain comments and whitespace
-    match headerCache.get? importKey with
+    match headerCache.find? importKey with
     | some cachedHeaderState => do
       -- Header is cached, use it as the base command state
       let (incStates, messages) ← processCommandsWithInfoTrees inputCtx parserState cachedHeaderState incrementalState?
