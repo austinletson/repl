@@ -300,24 +300,24 @@
     "pp":
     " :=  ParserDescr.trailingNode  `Demo.«term_≋_»  68  69  ParserDescr.binary  `andthen  ParserDescr.symbol  \" ≋ \"  ParserDescr.cat  `term  69 ",
     "constants":
-    ["ParserDescr.binary._@._hyg.196",
-     "ParserDescr.cat._@._hyg.196",
-     "ParserDescr.symbol._@._hyg.196",
-     "ParserDescr.trailingNode._@._hyg.196"]},
+    ["ParserDescr.cat._@._hyg.192",
+     "ParserDescr.binary._@._hyg.192",
+     "ParserDescr.trailingNode._@._hyg.192",
+     "ParserDescr.symbol._@._hyg.192"]},
    "type":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " Lean.TrailingParserDescr ",
-    "constants": ["Lean.TrailingParserDescr._@._hyg.196"]},
+    "constants": ["Lean.TrailingParserDescr._@._hyg.192"]},
    "signature":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " :  Lean.TrailingParserDescr ",
-    "constants": ["Lean.TrailingParserDescr._@._hyg.196"]},
+    "constants": ["Lean.TrailingParserDescr._@._hyg.192"]},
    "scope":
    {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
@@ -351,25 +351,25 @@
     "pp":
     " :=  fun  |  `(  $  lhs   ≋   $  rhs  )  =>  `  `( BEq.beq\n\n $  lhs  $  rhs  )  |  _  =>  no_error_if_unused%  throw  Lean.Macro.Exception.unsupportedSyntax ",
     "constants":
-    ["throw._@._hyg.215",
-     "Lean.Macro.Exception.unsupportedSyntax._@._hyg.215",
-     "rhs._@._hyg.193",
-     "lhs._@._hyg.193",
-     "BEq.beq"]},
+    ["lhs._@._hyg.188",
+     "Lean.Macro.Exception.unsupportedSyntax._@._hyg.210",
+     "rhs._@._hyg.188",
+     "BEq.beq",
+     "throw._@._hyg.210"]},
    "type":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " Macro ",
-    "constants": ["Macro._@._hyg.215"]},
+    "constants": ["Macro._@._hyg.210"]},
    "signature":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " :  Macro ",
-    "constants": ["Macro._@._hyg.215"]},
+    "constants": ["Macro._@._hyg.210"]},
    "scope":
    {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
@@ -403,25 +403,25 @@
     "pp":
     " :=  fun  |  `(  $  f  :  ident  $  lhs  $  rhs  )  =>  withRef  f  `(  $  lhs   ≋   $  rhs  )  |  _  =>  throw  (  ) ",
     "constants":
-    ["f._@._hyg.195",
-     "throw._@._hyg.195",
-     "rhs._@._hyg.193",
-     "lhs._@._hyg.193",
-     "withRef._@._hyg.195"]},
+    ["lhs._@._hyg.188",
+     "rhs._@._hyg.188",
+     "f._@._hyg.190",
+     "throw._@._hyg.190",
+     "withRef._@._hyg.190"]},
    "type":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " Lean.PrettyPrinter.Unexpander ",
-    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.195"]},
+    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.190"]},
    "signature":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " :  Lean.PrettyPrinter.Unexpander ",
-    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.195"]},
+    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.190"]},
    "scope":
    {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],

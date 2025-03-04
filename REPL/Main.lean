@@ -381,13 +381,13 @@ def runCommand (s : Command) : M IO (CommandResponse ⊕ Error) := do
     let opts := s.setOptions.getD {}
     if s.incrementality.getD false then
       let bestIncrementalState? ← findBestIncrementalState s.cmd s.env
-      let (initialCmdState, incStates, messages, headerCache) ← IO.processInput s.cmd initialCmdState? bestIncrementalState? (← get).headerCache opts
+      let (initialCmdState, incStates, messages, headerCache) ← Lean.Language.Lean.Lean.Elab.IO.processInput s.cmd initialCmdState? bestIncrementalState? (← get).headerCache opts
       -- Store the command text and incremental states for future reuse
       modify fun st => { st with headerCache := headerCache }
       recordCommandIncrementals s.cmd incStates s.env
       pure (initialCmdState, incStates, messages)
     else
-      let (initialCmdState, incStates, messages, _) ← IO.processInput s.cmd initialCmdState? none {} opts
+      let (initialCmdState, incStates, messages, _) ← Lean.Language.Lean.Lean.Elab.IO.processInput s.cmd initialCmdState? none {} opts
       pure (initialCmdState, incStates, messages)
   catch ex =>
     return .inr ⟨ex.toString⟩
@@ -410,8 +410,7 @@ def runCommand (s : Command) : M IO (CommandResponse ⊕ Error) := do
       { fileName := "",
         fileMap := default,
         tacticCache? := none,
-        snap? := none,
-        cancelTk? := none } }
+        snap? := none } }
   let env ← recordCommandSnapshot cmdSnapshot
   let trees := cmdState.infoState.trees.toList
   let trees := trees.filter filterRootTactics

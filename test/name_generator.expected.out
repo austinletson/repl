@@ -15,35 +15,31 @@
  "proofState": 2,
  "goals": ["x : Int\nh0 h : x > 0\n⊢ False"]}
 
-{"proofStatus": "Incomplete: contains metavariable(s)",
- "proofState": 3,
- "goals": []}
+{"proofStatus": "Error: Goal not assigned", "proofState": 3, "goals": []}
 
-{"proofStatus": "Incomplete: contains metavariable(s)",
- "proofState": 4,
- "goals": []}
+{"proofStatus": "Error: Goal not assigned", "proofState": 4, "goals": []}
 
 {"traces":
  ["[Meta.Tactic.simp.rewrite] of_eq_true (eq_true h0):1000, x > 0 ==> True"],
- "proofStatus": "Incomplete: contains metavariable(s)",
+ "proofStatus": "Error: Goal not assigned",
  "proofState": 5,
  "goals": []}
 
 {"traces":
- ["[Meta.Tactic.simp.rewrite] gt_iff_lt:1000, x > 0 ==> 0 < x",
+ ["[Meta.Tactic.simp.rewrite] @gt_iff_lt:1000, x > 0 ==> 0 < x",
   "[Meta.Tactic.simp.rewrite] h0:1000, 0 < x ==> True"],
- "proofStatus": "Incomplete: contains metavariable(s)",
+ "proofStatus": "Error: Goal not assigned",
  "proofState": 6,
  "goals": []}
 
 {"traces":
- ["[Meta.Tactic.simp.rewrite] gt_iff_lt:1000, x > 0 ==> 0 < x",
+ ["[Meta.Tactic.simp.rewrite] @gt_iff_lt:1000, x > 0 ==> 0 < x",
   "[Meta.Tactic.simp.rewrite] h0:1000, 0 < x ==> True"],
- "proofStatus": "Incomplete: contains metavariable(s)",
+ "proofStatus": "Error: Goal not assigned",
  "proofState": 7,
  "goals": []}
 
-{"proofStatus": "Incomplete: contains metavariable(s)",
+{"proofStatus": "Error: Goal not assigned",
  "proofState": 8,
  "messages":
  [{"severity": "error",
@@ -52,7 +48,7 @@
    "data": "unsolved goals\nx : Int\nh0 : x > 0\n⊢ x > 0"}],
  "goals": []}
 
-{"proofStatus": "Incomplete: contains metavariable(s)",
+{"proofStatus": "Error: Goal not assigned",
  "proofState": 9,
  "messages":
  [{"severity": "error",

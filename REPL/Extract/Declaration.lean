@@ -1,4 +1,5 @@
 import REPL.JSON
+import REPL.Frontend
 
 open Lean Elab System Parser
 

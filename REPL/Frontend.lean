@@ -7,6 +7,25 @@ import Lean.Elab.Frontend
 
 open Lean Elab Language
 
+structure IncrementalState extends Frontend.State where
+  inputCtx    : Parser.InputContext
+  initialSnap : Language.Lean.CommandParsedSnapshot
+
+
+namespace Lean.Language.Lean
+
+def processCommands (inputCtx : Parser.InputContext) (parserState : Parser.ModuleParserState)
+    (commandState : Command.State)
+    (old? : Option (Parser.InputContext × CommandParsedSnapshot) := none) :
+    BaseIO (SnapshotTask CommandParsedSnapshot) := do
+  let processingCtx : Lean.LeanProcessingContext := {
+    inputCtx with
+    mainModuleName := commandState.env.mainModule
+    opts := commandState.scopes.head!.opts
+    firstDiffPos? := old?.map (·.1.input.firstDiffPos inputCtx.input)
+  }
+  Lean.process.parseCmd (old?.map (·.2)) parserState commandState processingCtx
+
 namespace Lean.Elab.IO
 
 partial def IO.processCommandsIncrementally' (inputCtx : Parser.InputContext)
@@ -36,7 +55,7 @@ where
          , inputCtx := inputCtx
          , initialSnap := initialSnap
        }, snap.data.finishedSnap.get.infoTree?)
-    if let some next := snap.nextCmdSnap? then
+    if let some next := snap.next? then
       result :: go initialSnap next commands
     else
       [result]

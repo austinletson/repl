@@ -1,9 +1,14 @@
 {"messages":
  [{"severity": "error",
-   "pos": {"line": 1, "column": 0},
-   "endPos": {"line": 1, "column": 7},
+   "pos": {"line": 5, "column": 4},
+   "endPos": {"line": 5, "column": 15},
    "data":
-   "application type mismatch\n  let_fun this := of_decide_eq_true (Eq.refl true);\n  of_decide_eq_true (Eq.refl true)\nargument has type\n  true = true → true = true\nbut function has type\n  (∀ (x : true = true), (fun this => n✝ + 1 = 0) x) → (fun this => n✝ + 1 = 0) ⋯"}],
+   "tactic 'apply' failed, failed to unify\n  n✝ + 1 = 0\nwith\n  true = true\nn✝ : Nat\n⊢ true = true"},
+  {"severity": "error",
+   "pos": {"line": 1, "column": 19},
+   "endPos": {"line": 6, "column": 11},
+   "data":
+   "unsolved goals\ncase succ\nn✝ : Nat\nthis : true = true\n⊢ n✝ + 1 = 0"}],
  "env": 0}
 
 {"sorries":
@@ -26,10 +31,15 @@
  "proofState": 2,
  "goals": ["case succ\nn✝ : Nat\n⊢ n✝ + 1 = 0"]}
 
-{"proofStatus":
- "Error: kernel type check failed: application type mismatch\n  let_fun this := of_decide_eq_true (Eq.refl true);\n  of_decide_eq_true (Eq.refl true)\nargument has type\n  true = true → true = true\nbut function has type\n  (∀ (x : true = true), (fun this => n✝ + 1 = 0) x) → (fun this => n✝ + 1 = 0) ⋯",
+{"proofStatus": "Incomplete: open goals remain",
  "proofState": 3,
- "goals": []}
+ "messages":
+ [{"severity": "error",
+   "pos": {"line": 0, "column": 0},
+   "endPos": {"line": 0, "column": 0},
+   "data":
+   "tactic 'apply' failed, failed to unify\n  n✝ + 1 = 0\nwith\n  true = true\nn✝ : Nat\n⊢ true = true"}],
+ "goals": ["case succ\nn✝ : Nat\nthis : true = true\n⊢ n✝ + 1 = 0"]}
 
 {"sorries": [{"proofState": 4, "goal": "n✝ : Nat\n⊢ true = true"}],
  "proofStatus": "Incomplete: open goals remain",
