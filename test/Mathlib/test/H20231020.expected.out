@@ -1,8 +1,40 @@
-{"env": 0}
+{"messages":
+ [{"severity": "error",
+   "pos": {"line": 12, "column": 5},
+   "endPos": {"line": 12, "column": 17},
+   "data": "unknown namespace 'BigOperators'"},
+  {"severity": "error",
+   "pos": {"line": 13, "column": 5},
+   "endPos": {"line": 13, "column": 9},
+   "data": "unknown namespace 'Real'"},
+  {"severity": "error",
+   "pos": {"line": 14, "column": 5},
+   "endPos": {"line": 14, "column": 8},
+   "data": "unknown namespace 'Nat'"},
+  {"severity": "error",
+   "pos": {"line": 15, "column": 5},
+   "endPos": {"line": 15, "column": 13},
+   "data": "unknown namespace 'Topology'"}],
+ "env": 0}
 
-{"env": 1}
+{"messages":
+ [{"severity": "error",
+   "pos": {"line": 1, "column": 49},
+   "endPos": null,
+   "data": "expected token"}],
+ "env": 1}
 
-{"env": 2}
+{"messages":
+ [{"severity": "error",
+   "pos": {"line": 1, "column": 33},
+   "endPos": null,
+   "data": "expected token"}],
+ "env": 2}
 
-{"env": 3}
+{"messages":
+ [{"severity": "error",
+   "pos": {"line": 1, "column": 58},
+   "endPos": null,
+   "data": "expected token"}],
+ "env": 3}
 
