@@ -93,7 +93,7 @@ def getScope (ctx : ContextInfo) (state : Command.State) : ScopeInfo :=
   {
     varDecls := scope.varDecls.map fun stx => s!"variable {stx.raw.prettyPrint.pretty}",
     includeVars := scope.includedVars.toArray.map fun name => name.eraseMacroScopes,
-    omitVars := scope.omittedVars.toArray.map fun name => name.eraseMacroScopes,
+    omitVars := #[],
     levelNames := scope.levelNames.toArray,
     currNamespace := ctx.currNamespace,
     openDecl := ctx.openDecls,

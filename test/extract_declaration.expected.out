@@ -5,21 +5,21 @@
     {"synthetic": false,
      "start": {"line": 6, "column": 20},
      "finish": {"line": 7, "column": 25}},
-    "pp": ":=\n  println \"Hello, world!\"",
+    "pp": ":=\n  println  \"Hello, world!\" ",
     "constants": ["println"]},
    "type":
    {"range":
     {"synthetic": false,
      "start": {"line": 6, "column": 12},
      "finish": {"line": 6, "column": 19}},
-    "pp": "IO Unit",
+    "pp": "IO  Unit ",
     "constants": ["IO", "Unit"]},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 6, "column": 10},
      "finish": {"line": 6, "column": 19}},
-    "pp": ": IO Unit",
+    "pp": ": IO  Unit ",
     "constants": ["IO", "Unit"]},
    "scope":
    {"varDecls": [],
@@ -32,7 +32,7 @@
    {"synthetic": false,
     "start": {"line": 6, "column": 0},
     "finish": {"line": 7, "column": 25}},
-   "pp": "def hello : IO Unit :=\n  println \"Hello, world!\"",
+   "pp": "def hello : IO Unit :=\n  println  \"Hello, world!\" ",
    "name": "hello",
    "modifiers":
    {"visibility": "regular",
@@ -50,24 +50,24 @@
     {"synthetic": false,
      "start": {"line": 12, "column": 57},
      "finish": {"line": 14, "column": 13}},
-    "pp": ":= by\n  intro h₁ h₂\n  rw [h₁, h₂]",
+    "pp": ":= by\n  intro h₁ h₂\n  rw [h₁, h₂ ] ",
     "constants": ["h₂", "h₁"]},
    "type":
    {"range":
     {"synthetic": false,
      "start": {"line": 12, "column": 35},
      "finish": {"line": 12, "column": 56}},
-    "pp": "a = b → b = c → c = a",
+    "pp": "a = b → b = c → c =  a ",
     "constants": ["c", "a", "b"]},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 12, "column": 21},
      "finish": {"line": 12, "column": 56}},
-    "pp": "{a b c : α} : a = b → b = c → c = a",
+    "pp": "{a b c : α} : a = b → b = c → c =  a ",
     "constants": ["c", "α", "a", "b"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -78,7 +78,7 @@
     "start": {"line": 12, "column": 0},
     "finish": {"line": 14, "column": 13}},
    "pp":
-   "theorem eq_trans_sym {a b c : α} : a = b → b = c → c = a := by\n  intro h₁ h₂\n  rw [h₁, h₂]",
+   "theorem eq_trans_sym {a b c : α} : a = b → b = c → c = a := by\n  intro h₁ h₂\n  rw [h₁, h₂ ] ",
    "name": "eq_trans_sym",
    "modifiers":
    {"visibility": "regular",
@@ -95,35 +95,35 @@
     {"synthetic": false,
      "start": {"line": 12, "column": 21},
      "finish": {"line": 12, "column": 32}},
-    "pp": "{a b c : α}",
+    "pp": "{a b c : α } ",
     "map":
     [{"type": "α", "id": "a", "binderInfo": "implicit"},
      {"type": "α", "id": "b", "binderInfo": "implicit"},
      {"type": "α", "id": "c", "binderInfo": "implicit"}],
-    "groups": ["{a b c : α}"]}},
+    "groups": ["{a b c : α } "]}},
   {"value":
    {"range":
     {"synthetic": false,
      "start": {"line": 19, "column": 2},
      "finish": {"line": 20, "column": 27}},
-    "pp": "| .zero => x\n  | .succ n => pow' x n * x",
+    "pp": "| .zero => x\n  | .succ n => pow' x n *  x ",
     "constants": ["pow'", "succ", "n", "x", "zero"]},
    "type":
    {"range":
     {"synthetic": false,
      "start": {"line": 18, "column": 27},
      "finish": {"line": 18, "column": 34}},
-    "pp": "Nat → α",
+    "pp": "Nat →  α ",
     "constants": ["α", "Nat"]},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 18, "column": 9},
      "finish": {"line": 18, "column": 34}},
-    "pp": "[Mul α] (x : α) : Nat → α",
+    "pp": "[Mul α] (x : α) : Nat →  α ",
     "constants": ["α", "Mul", "Nat", "x"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -134,7 +134,7 @@
     "start": {"line": 16, "column": 0},
     "finish": {"line": 20, "column": 27}},
    "pp":
-   "/-- Docstring test\npow' x n = x ^ (n + 1) -/\ndef pow' [Mul α] (x : α) : Nat → α\n  | .zero => x\n  | .succ n => pow' x n * x",
+   "/-- Docstring test\npow' x n = x ^ (n + 1) -/\ndef pow' [Mul α] (x : α) : Nat → α\n  | .zero => x\n  | .succ n => pow' x n *  x ",
    "name": "pow'",
    "modifiers":
    {"visibility": "regular",
@@ -146,7 +146,7 @@
      {"synthetic": false,
       "start": {"line": 16, "column": 0},
       "finish": {"line": 17, "column": 25}},
-     "content": "/-- Docstring test\npow' x n = x ^ (n + 1) -/"},
+     "content": "/--  Docstring test\npow' x n = x ^ (n + 1) -/ "},
     "computeKind": "regular",
     "attributes": []},
    "kind": "definition",
@@ -156,28 +156,28 @@
     {"synthetic": false,
      "start": {"line": 18, "column": 9},
      "finish": {"line": 18, "column": 24}},
-    "pp": "[Mul α] (x : α)",
+    "pp": "[Mul α] (x : α ) ",
     "map":
-    [{"type": "Mul α", "id": "", "binderInfo": "instImplicit"},
+    [{"type": "Mul  α ", "id": "", "binderInfo": "instImplicit"},
      {"type": "α", "id": "x", "binderInfo": "default"}],
-    "groups": ["[Mul α]", "(x : α)"]}},
+    "groups": ["[Mul α ] ", "(x : α ) "]}},
   {"value": null,
    "type":
    {"range":
     {"synthetic": false,
      "start": {"line": 22, "column": 33},
      "finish": {"line": 22, "column": 39}},
-    "pp": ": Type",
+    "pp": ":  Type ",
     "constants": []},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 22, "column": 23},
      "finish": {"line": 22, "column": 39}},
-    "pp": "(k : Nat) : Type",
+    "pp": "(k : Nat) :  Type ",
     "constants": ["Nat", "k"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -188,7 +188,7 @@
     "start": {"line": 22, "column": 0},
     "finish": {"line": 26, "column": 29}},
    "pp":
-   "structure FermatTriple (k : Nat) : Type where\n  x : Nat\n  y : Nat\n  z : Nat\n  eqn : x ^ k + y ^ k = z ^ k",
+   "structure FermatTriple (k : Nat) : Type where\n  x : Nat\n  y : Nat\n  z : Nat\n  eqn : x ^ k + y ^ k = z ^  k ",
    "name": "FermatTriple",
    "modifiers":
    {"visibility": "regular",
@@ -205,32 +205,32 @@
     {"synthetic": false,
      "start": {"line": 22, "column": 23},
      "finish": {"line": 22, "column": 32}},
-    "pp": "(k : Nat)",
+    "pp": "(k : Nat ) ",
     "map": [{"type": "Nat", "id": "k", "binderInfo": "default"}],
-    "groups": ["(k : Nat)"]}},
+    "groups": ["(k : Nat ) "]}},
   {"value":
    {"range":
     {"synthetic": false,
      "start": {"line": 28, "column": 25},
      "finish": {"line": 28, "column": 44}},
-    "pp": ":= ⟨ 3, 4, 5, rfl ⟩",
+    "pp": ":= ⟨ 3, 4, 5, rfl  ⟩ ",
     "constants": ["rfl"]},
    "type":
    {"range":
     {"synthetic": false,
      "start": {"line": 28, "column": 10},
      "finish": {"line": 28, "column": 24}},
-    "pp": "FermatTriple 2",
+    "pp": "FermatTriple  2 ",
     "constants": ["FermatTriple"]},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 28, "column": 8},
      "finish": {"line": 28, "column": 24}},
-    "pp": ": FermatTriple 2",
+    "pp": ": FermatTriple  2 ",
     "constants": ["FermatTriple"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -240,7 +240,7 @@
    {"synthetic": false,
     "start": {"line": 28, "column": 0},
     "finish": {"line": 28, "column": 44}},
-   "pp": "example : FermatTriple 2 := ⟨ 3, 4, 5, rfl ⟩",
+   "pp": "example : FermatTriple 2 := ⟨ 3, 4, 5, rfl  ⟩ ",
    "name": "_example",
    "modifiers":
    {"visibility": "regular",
@@ -258,7 +258,7 @@
     {"synthetic": false,
      "start": {"line": 33, "column": 2},
      "finish": {"line": 33, "column": 7}},
-    "pp": "| val",
+    "pp": "|  val ",
     "constants": ["val"]},
    "type": null,
    "signature":
@@ -269,7 +269,7 @@
     "pp": "",
     "constants": []},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -279,7 +279,7 @@
    {"synthetic": false,
     "start": {"line": 32, "column": 0},
     "finish": {"line": 33, "column": 7}},
-   "pp": "inductive MyType\n  | val",
+   "pp": "inductive MyType\n  |  val ",
    "name": "MyType",
    "modifiers":
    {"visibility": "regular",
@@ -319,7 +319,7 @@
     "pp": " :  Lean.TrailingParserDescr ",
     "constants": ["Lean.TrailingParserDescr._@._hyg.196"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -371,7 +371,7 @@
     "pp": " :  Macro ",
     "constants": ["Macro._@._hyg.215"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -423,7 +423,7 @@
     "pp": " :  Lean.PrettyPrinter.Unexpander ",
     "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.195"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -452,24 +452,24 @@
     {"synthetic": false,
      "start": {"line": 37, "column": 29},
      "finish": {"line": 38, "column": 17}},
-    "pp": "where\n  beq _ _ := true",
+    "pp": "where\n  beq _ _ :=  true ",
     "constants": ["beq", "true"]},
    "type":
    {"range":
     {"synthetic": false,
      "start": {"line": 37, "column": 18},
      "finish": {"line": 37, "column": 28}},
-    "pp": "BEq MyType",
+    "pp": "BEq  MyType ",
     "constants": ["MyType", "BEq"]},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 37, "column": 16},
      "finish": {"line": 37, "column": 28}},
-    "pp": ": BEq MyType",
+    "pp": ": BEq  MyType ",
     "constants": ["MyType", "BEq"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -479,7 +479,7 @@
    {"synthetic": false,
     "start": {"line": 37, "column": 0},
     "finish": {"line": 38, "column": 17}},
-   "pp": "scoped instance : BEq MyType where\n  beq _ _ := true",
+   "pp": "scoped instance : BEq MyType where\n  beq _ _ :=  true ",
    "name": "[anonymous]",
    "modifiers":
    {"visibility": "regular",
@@ -498,24 +498,24 @@
      "start": {"line": 47, "column": 32},
      "finish": {"line": 53, "column": 38}},
     "pp":
-    ":= do\n  let x : Demo.MyType := Demo.MyType.val\n  let y : Demo.MyType := Demo.MyType.val\n  if x ≋ y then\n    IO.println \"x and y are equal\"\n  else\n    IO.println \"x and y are not equal\"",
+    ":= do\n  let x : Demo.MyType := Demo.MyType.val\n  let y : Demo.MyType := Demo.MyType.val\n  if x ≋ y then\n    IO.println \"x and y are equal\"\n  else\n    IO.println  \"x and y are not equal\" ",
     "constants": ["IO.println", "Demo.MyType.val", "y", "Demo.MyType", "x"]},
    "type":
    {"range":
     {"synthetic": false,
      "start": {"line": 47, "column": 24},
      "finish": {"line": 47, "column": 31}},
-    "pp": "IO Unit",
+    "pp": "IO  Unit ",
     "constants": ["IO", "Unit"]},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 47, "column": 22},
      "finish": {"line": 47, "column": 31}},
-    "pp": ": IO Unit",
+    "pp": ": IO  Unit ",
     "constants": ["IO", "Unit"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -526,7 +526,7 @@
     "start": {"line": 47, "column": 0},
     "finish": {"line": 53, "column": 38}},
    "pp":
-   "def open_scoped_test1 : IO Unit := do\n  let x : Demo.MyType := Demo.MyType.val\n  let y : Demo.MyType := Demo.MyType.val\n  if x ≋ y then\n    IO.println \"x and y are equal\"\n  else\n    IO.println \"x and y are not equal\"",
+   "def open_scoped_test1 : IO Unit := do\n  let x : Demo.MyType := Demo.MyType.val\n  let y : Demo.MyType := Demo.MyType.val\n  if x ≋ y then\n    IO.println \"x and y are equal\"\n  else\n    IO.println  \"x and y are not equal\" ",
    "name": "open_scoped_test1",
    "modifiers":
    {"visibility": "regular",
@@ -544,7 +544,7 @@
     {"synthetic": false,
      "start": {"line": 58, "column": 41},
      "finish": {"line": 59, "column": 7}},
-    "pp": ":=\n  a * a",
+    "pp": ":=\n  a *  a ",
     "constants": ["a"]},
    "type":
    {"range":
@@ -558,10 +558,10 @@
     {"synthetic": false,
      "start": {"line": 58, "column": 25},
      "finish": {"line": 58, "column": 40}},
-    "pp": "(a : Nat) : Nat",
+    "pp": "(a : Nat) :  Nat ",
     "constants": ["a", "Nat"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -571,7 +571,7 @@
    {"synthetic": false,
     "start": {"line": 58, "column": 0},
     "finish": {"line": 59, "column": 7}},
-   "pp": "private def private_test (a : Nat) : Nat :=\n  a * a",
+   "pp": "private def private_test (a : Nat) : Nat :=\n  a *  a ",
    "name": "private_test",
    "modifiers":
    {"visibility": "private",
@@ -588,15 +588,15 @@
     {"synthetic": false,
      "start": {"line": 58, "column": 25},
      "finish": {"line": 58, "column": 34}},
-    "pp": "(a : Nat)",
+    "pp": "(a : Nat ) ",
     "map": [{"type": "Nat", "id": "a", "binderInfo": "default"}],
-    "groups": ["(a : Nat)"]}},
+    "groups": ["(a : Nat ) "]}},
   {"value":
    {"range":
     {"synthetic": false,
      "start": {"line": 61, "column": 62},
      "finish": {"line": 61, "column": 66}},
-    "pp": ":= a",
+    "pp": ":=  a ",
     "constants": ["a"]},
    "type":
    {"range":
@@ -610,10 +610,10 @@
     {"synthetic": false,
      "start": {"line": 61, "column": 46},
      "finish": {"line": 61, "column": 61}},
-    "pp": "(a : Nat) : Nat",
+    "pp": "(a : Nat) :  Nat ",
     "constants": ["a", "Nat"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -623,7 +623,7 @@
    {"synthetic": false,
     "start": {"line": 61, "column": 0},
     "finish": {"line": 61, "column": 66}},
-   "pp": "private noncomputable def non_computable_test (a : Nat) : Nat := a",
+   "pp": "private noncomputable def non_computable_test (a : Nat) : Nat :=  a ",
    "name": "non_computable_test",
    "modifiers":
    {"visibility": "private",
@@ -640,15 +640,15 @@
     {"synthetic": false,
      "start": {"line": 61, "column": 46},
      "finish": {"line": 61, "column": 55}},
-    "pp": "(a : Nat)",
+    "pp": "(a : Nat ) ",
     "map": [{"type": "Nat", "id": "a", "binderInfo": "default"}],
-    "groups": ["(a : Nat)"]}},
+    "groups": ["(a : Nat ) "]}},
   {"value":
    {"range":
     {"synthetic": false,
      "start": {"line": 66, "column": 52},
      "finish": {"line": 66, "column": 56}},
-    "pp": ":= a",
+    "pp": ":=  a ",
     "constants": ["a"]},
    "type":
    {"range":
@@ -662,10 +662,10 @@
     {"synthetic": false,
      "start": {"line": 66, "column": 36},
      "finish": {"line": 66, "column": 51}},
-    "pp": "(a : Nat) : Nat",
+    "pp": "(a : Nat) :  Nat ",
     "constants": ["a", "Nat"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -676,7 +676,7 @@
     "start": {"line": 64, "column": 0},
     "finish": {"line": 66, "column": 56}},
    "pp":
-   "/--\n dododo-/\nprotected partial def prot_part_def (a : Nat) : Nat := a",
+   "/--\n dododo-/\nprotected partial def prot_part_def (a : Nat) : Nat :=  a ",
    "name": "prot_part_def",
    "modifiers":
    {"visibility": "protected",
@@ -688,7 +688,7 @@
      {"synthetic": false,
       "start": {"line": 64, "column": 0},
       "finish": {"line": 65, "column": 9}},
-     "content": "/--\n dododo-/"},
+     "content": "/--\n  dododo-/ "},
     "computeKind": "regular",
     "attributes": []},
    "kind": "definition",
@@ -698,15 +698,15 @@
     {"synthetic": false,
      "start": {"line": 66, "column": 36},
      "finish": {"line": 66, "column": 45}},
-    "pp": "(a : Nat)",
+    "pp": "(a : Nat ) ",
     "map": [{"type": "Nat", "id": "a", "binderInfo": "default"}],
-    "groups": ["(a : Nat)"]}},
+    "groups": ["(a : Nat ) "]}},
   {"value":
    {"range":
     {"synthetic": false,
      "start": {"line": 69, "column": 30},
      "finish": {"line": 69, "column": 35}},
-    "pp": ":= 42",
+    "pp": ":=  42 ",
     "constants": []},
    "type":
    {"range":
@@ -720,10 +720,10 @@
     {"synthetic": false,
      "start": {"line": 69, "column": 24},
      "finish": {"line": 69, "column": 29}},
-    "pp": ": Nat",
+    "pp": ":  Nat ",
     "constants": ["Nat"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}"],
+   {"varDecls": ["variable {α : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -733,7 +733,7 @@
    {"synthetic": false,
     "start": {"line": 69, "column": 0},
     "finish": {"line": 69, "column": 35}},
-   "pp": "@[simp, instance] def t : Nat := 42",
+   "pp": "@[simp, instance] def t : Nat :=  42 ",
    "name": "t",
    "modifiers":
    {"visibility": "regular",
@@ -751,7 +751,7 @@
     {"synthetic": false,
      "start": {"line": 72, "column": 32},
      "finish": {"line": 73, "column": 7}},
-    "pp": ":=\n  a + t",
+    "pp": ":=\n  a +  t ",
     "constants": ["t", "a"]},
    "type":
    {"range":
@@ -765,10 +765,10 @@
     {"synthetic": false,
      "start": {"line": 72, "column": 16},
      "finish": {"line": 72, "column": 31}},
-    "pp": "(a : Nat) : Nat",
+    "pp": "(a : Nat) :  Nat ",
     "constants": ["a", "Nat"]},
    "scope":
-   {"varDecls": ["variable {α : Type u}", "variable {β : Type u}"],
+   {"varDecls": ["variable {α : Type u } ", "variable {β : Type u } "],
     "openDecl": [],
     "omitVars": [],
     "levelNames": ["u"],
@@ -778,7 +778,7 @@
    {"synthetic": false,
     "start": {"line": 72, "column": 0},
     "finish": {"line": 73, "column": 7}},
-   "pp": "def public_test (a : Nat) : Nat :=\n  a + t",
+   "pp": "def public_test (a : Nat) : Nat :=\n  a +  t ",
    "name": "public_test",
    "modifiers":
    {"visibility": "regular",
@@ -795,7 +795,7 @@
     {"synthetic": false,
      "start": {"line": 72, "column": 16},
      "finish": {"line": 72, "column": 25}},
-    "pp": "(a : Nat)",
+    "pp": "(a : Nat ) ",
     "map": [{"type": "Nat", "id": "a", "binderInfo": "default"}],
-    "groups": ["(a : Nat)"]}}]}
+    "groups": ["(a : Nat ) "]}}]}
 
