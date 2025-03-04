@@ -92,7 +92,7 @@ def getScope (ctx : ContextInfo) (state : Command.State) : ScopeInfo :=
   let scope := state.scopes.head!
   {
     varDecls := scope.varDecls.map fun stx => s!"variable {stx.raw.prettyPrint.pretty}",
-    includeVars := scope.includedVars.toArray.map fun name => name.eraseMacroScopes,
+    includeVars := #[],
     omitVars := #[],
     levelNames := scope.levelNames.toArray,
     currNamespace := ctx.currNamespace,
