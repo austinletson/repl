@@ -142,8 +142,18 @@ def runMetaM (p : ProofSnapshot) (t : MetaM α) : IO (α × ProofSnapshot) := do
 
 /-- Run a `TermElabM` monadic function in the current `ProofSnapshot`, updating the `Term.State`. -/
 def runTermElabM (p : ProofSnapshot) (t : TermElabM α) : IO (α × ProofSnapshot) := do
+  -- Create a wrapped function that ensures auxiliary names work properly in Lean <= v4.18.0
+  let wrappedT : TermElabM α := do
+    if (← read).declName?.isNone then
+      let syntheticDeclName := `auxInProofSnapshot
+      let ctx ← read
+      let newCtx := { ctx with declName? := some syntheticDeclName }
+      withTheReader Term.Context (fun _ => newCtx) t
+    else
+      t
+
   let ((a, termState), p') ← p.runMetaM (Lean.Elab.Term.TermElabM.run (s := p.termState)
-    (do let r ← t; Term.synthesizeSyntheticMVarsNoPostponing; pure r))
+    (do let r ← wrappedT; Term.synthesizeSyntheticMVarsNoPostponing; pure r))
   return (a, { p' with termState })
 
 /-- Run a `TacticM` monadic function in the current `ProofSnapshot`, updating the `Tactic.State`. -/

@@ -80,12 +80,12 @@ structure State where
   Trie-based storage for fast prefix matching, organized by environment ID.
   Map from environment ID (None for fresh env) to trie of command prefixes with incremental states.
   -/
-  envTries : Std.HashMap (Option Nat) (Lean.Data.Trie IncrementalState) := Std.HashMap.emptyWithCapacity 8
+  envTries : Std.HashMap (Option Nat) (Lean.Data.Trie IncrementalState) := Std.HashMap.empty 8
   /--
   Cache for processed headers (import statements) to avoid reprocessing the same imports repeatedly.
   Maps import raw string to the processed command state.
   -/
-  headerCache : Std.HashMap String Command.State := Std.HashMap.emptyWithCapacity 8
+  headerCache : Std.HashMap String Command.State := Std.HashMap.empty 8
 
 /--
 The Lean REPL monad.

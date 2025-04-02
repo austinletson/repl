@@ -5,11 +5,6 @@
    "pos": {"line": 2, "column": 2},
    "goals": "P : Prop\nhp : P\n⊢ P",
    "endPos": {"line": 2, "column": 10}}],
- "messages":
- [{"severity": "info",
-   "pos": {"line": 1, "column": 0},
-   "endPos": {"line": 2, "column": 10},
-   "data": "Goals accomplished!"}],
  "env": 0}
 
 {"proofStatus": "Completed", "proofState": 1, "goals": []}
