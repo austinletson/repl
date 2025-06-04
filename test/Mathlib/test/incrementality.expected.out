@@ -27,9 +27,17 @@
    "endPos": {"line": 10, "column": 5}}],
  "messages":
  [{"severity": "info",
+   "pos": {"line": 2, "column": 0},
+   "endPos": {"line": 2, "column": 68},
+   "data": "Goals accomplished!"},
+  {"severity": "info",
    "pos": {"line": 8, "column": 0},
    "endPos": {"line": 8, "column": 5},
-   "data": "9227465"}],
+   "data": "9227465"},
+  {"severity": "info",
+   "pos": {"line": 9, "column": 0},
+   "endPos": {"line": 10, "column": 5},
+   "data": "Goals accomplished!"}],
  "env": 0}
 
 {"tactics":
@@ -61,9 +69,17 @@
    "endPos": {"line": 10, "column": 5}}],
  "messages":
  [{"severity": "info",
+   "pos": {"line": 2, "column": 0},
+   "endPos": {"line": 2, "column": 68},
+   "data": "Goals accomplished!"},
+  {"severity": "info",
    "pos": {"line": 8, "column": 0},
    "endPos": {"line": 8, "column": 5},
-   "data": "9227465"}],
+   "data": "9227465"},
+  {"severity": "info",
+   "pos": {"line": 9, "column": 0},
+   "endPos": {"line": 10, "column": 5},
+   "data": "Goals accomplished!"}],
  "env": 1}
 
 {"env": 2}
