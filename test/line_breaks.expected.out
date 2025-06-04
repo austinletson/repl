@@ -22,5 +22,10 @@
    "data": "declaration uses 'sorry'"}],
  "env": 1}
 
-{"env": 2}
+{"messages":
+ [{"severity": "info",
+   "pos": {"line": 1, "column": 0},
+   "endPos": {"line": 3, "column": 5},
+   "data": "Goals accomplished!"}],
+ "env": 2}
 
