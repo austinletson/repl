@@ -69,5 +69,5 @@ end Example
 @[simp, instance] def t : Nat := 42
 
 variable {β : Type u}
-public def public_test (a : Nat) : Nat :=
+def public_test (a : Nat) : Nat :=
   a + t

@@ -164,20 +164,18 @@
   {"value": null,
    "type":
    {"range":
-    {"synthetic": false,
-     "start": {"line": 22, "column": 40},
-     "finish": {"line": 26, "column": 29}},
-    "pp":
-    "where\n  x : Nat\n  y : Nat\n  z : Nat\n  eqn : x ^ k + y ^ k = z ^ k",
-    "constants": ["eqn", "z", "y", "Nat", "k", "x"]},
+    {"synthetic": true,
+     "start": {"line": 1, "column": 0},
+     "finish": {"line": 1, "column": 0}},
+    "pp": "",
+    "constants": []},
    "signature":
    {"range":
     {"synthetic": false,
      "start": {"line": 22, "column": 23},
-     "finish": {"line": 26, "column": 29}},
-    "pp":
-    "(k : Nat) : Type where\n  x : Nat\n  y : Nat\n  z : Nat\n  eqn : x ^ k + y ^ k = z ^ k",
-    "constants": ["eqn", "z", "y", "Nat", "k", "x"]},
+     "finish": {"line": 22, "column": 32}},
+    "pp": "(k : Nat)",
+    "constants": ["Nat", "k"]},
    "scope":
    {"varDecls": ["variable {α : Type u}"],
     "openDecl": [],
@@ -206,10 +204,10 @@
    {"range":
     {"synthetic": false,
      "start": {"line": 22, "column": 23},
-     "finish": {"line": 22, "column": 39}},
-    "pp": "(k : Nat) : Type",
-    "map": [],
-    "groups": ["(k : Nat)", ": Type"]}},
+     "finish": {"line": 22, "column": 32}},
+    "pp": "(k : Nat)",
+    "map": [{"type": "Nat", "id": "k", "binderInfo": "default"}],
+    "groups": ["(k : Nat)"]}},
   {"value":
    {"range":
     {"synthetic": false,
@@ -302,24 +300,24 @@
     "pp":
     " :=  ParserDescr.trailingNode  `Demo.«term_≋_»  68  69  ParserDescr.binary  `andthen  ParserDescr.symbol  \" ≋ \"  ParserDescr.cat  `term  69 ",
     "constants":
-    ["ParserDescr.symbol._@._hyg.226",
-     "ParserDescr.binary._@._hyg.226",
-     "ParserDescr.cat._@._hyg.226",
-     "ParserDescr.trailingNode._@._hyg.226"]},
+    ["ParserDescr.cat._@._hyg.202",
+     "ParserDescr.symbol._@._hyg.202",
+     "ParserDescr.binary._@._hyg.202",
+     "ParserDescr.trailingNode._@._hyg.202"]},
    "type":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " Lean.TrailingParserDescr ",
-    "constants": ["Lean.TrailingParserDescr._@._hyg.226"]},
+    "constants": ["Lean.TrailingParserDescr._@._hyg.202"]},
    "signature":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " :  Lean.TrailingParserDescr ",
-    "constants": ["Lean.TrailingParserDescr._@._hyg.226"]},
+    "constants": ["Lean.TrailingParserDescr._@._hyg.202"]},
    "scope":
    {"varDecls": ["variable {α : Type u}"],
     "openDecl": [],
@@ -332,7 +330,7 @@
     "start": {"line": 35, "column": 0},
     "finish": {"line": 35, "column": 32}},
    "pp":
-   " @[ scoped  term_parser  1000  ]  meta  def  «term_≋_»  :  Lean.TrailingParserDescr  :=  ParserDescr.trailingNode  `Demo.«term_≋_»  68  69  ParserDescr.binary  `andthen  ParserDescr.symbol  \" ≋ \"  ParserDescr.cat  `term  69 ",
+   " @[ scoped  term_parser  1000  ]  def  «term_≋_»  :  Lean.TrailingParserDescr  :=  ParserDescr.trailingNode  `Demo.«term_≋_»  68  69  ParserDescr.binary  `andthen  ParserDescr.symbol  \" ≋ \"  ParserDescr.cat  `term  69 ",
    "name": "«term_≋_»",
    "modifiers":
    {"visibility": "regular",
@@ -340,7 +338,7 @@
     "isUnsafe": false,
     "isProtected": false,
     "docString": null,
-    "computeKind": "meta",
+    "computeKind": "regular",
     "attributes": ["scoped  term_parser  1000"]},
    "kind": "definition",
    "fullName": "Demo.«term_≋_»",
@@ -353,25 +351,25 @@
     "pp":
     " :=  fun  |  `(  $  lhs   ≋   $  rhs  )  =>  `  `( BEq.beq\n\n $  lhs  $  rhs  )  |  _  =>  no_error_if_unused%  throw  Lean.Macro.Exception.unsupportedSyntax ",
     "constants":
-    ["Lean.Macro.Exception.unsupportedSyntax._@._hyg.255",
-     "throw._@._hyg.255",
-     "rhs._@._hyg.223",
+    ["rhs._@._hyg.199",
+     "throw._@._hyg.221",
+     "Lean.Macro.Exception.unsupportedSyntax._@._hyg.221",
      "BEq.beq",
-     "lhs._@._hyg.223"]},
+     "lhs._@._hyg.199"]},
    "type":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " Macro ",
-    "constants": ["Macro._@._hyg.255"]},
+    "constants": ["Macro._@._hyg.221"]},
    "signature":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " :  Macro ",
-    "constants": ["Macro._@._hyg.255"]},
+    "constants": ["Macro._@._hyg.221"]},
    "scope":
    {"varDecls": ["variable {α : Type u}"],
     "openDecl": [],
@@ -384,7 +382,7 @@
     "start": {"line": 35, "column": 0},
     "finish": {"line": 35, "column": 32}},
    "pp":
-   " @[  macro  Demo.«term_≋_»  ]  meta  def  «_aux___macroRules_Demo_term_≋__1»  :  Macro  :=  fun  |  `(  $  lhs   ≋   $  rhs  )  =>  `  `( BEq.beq\n\n $  lhs  $  rhs  )  |  _  =>  no_error_if_unused%  throw  Lean.Macro.Exception.unsupportedSyntax ",
+   " @[  macro  Demo.«term_≋_»  ]  def  «_aux___macroRules_Demo_term_≋__1»  :  Macro  :=  fun  |  `(  $  lhs   ≋   $  rhs  )  =>  `  `( BEq.beq\n\n $  lhs  $  rhs  )  |  _  =>  no_error_if_unused%  throw  Lean.Macro.Exception.unsupportedSyntax ",
    "name": "«_aux___macroRules_Demo_term_≋__1»",
    "modifiers":
    {"visibility": "regular",
@@ -392,7 +390,7 @@
     "isUnsafe": false,
     "isProtected": false,
     "docString": null,
-    "computeKind": "meta",
+    "computeKind": "regular",
     "attributes": ["macro  Demo.«term_≋_»"]},
    "kind": "definition",
    "fullName": "Demo.«_aux___macroRules_Demo_term_≋__1»",
@@ -405,25 +403,25 @@
     "pp":
     " :=  fun  |  `(  $  f  :  ident  $  lhs  $  rhs  )  =>  withRef  f  `(  $  lhs   ≋   $  rhs  )  |  _  =>  throw  (  ) ",
     "constants":
-    ["throw._@._hyg.225",
-     "rhs._@._hyg.223",
-     "lhs._@._hyg.223",
-     "f._@._hyg.225",
-     "withRef._@._hyg.225"]},
+    ["rhs._@._hyg.199",
+     "throw._@._hyg.201",
+     "withRef._@._hyg.201",
+     "f._@._hyg.201",
+     "lhs._@._hyg.199"]},
    "type":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " Lean.PrettyPrinter.Unexpander ",
-    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.225"]},
+    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.201"]},
    "signature":
    {"range":
     {"synthetic": true,
      "start": {"line": 35, "column": 0},
      "finish": {"line": 35, "column": 32}},
     "pp": " :  Lean.PrettyPrinter.Unexpander ",
-    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.225"]},
+    "constants": ["Lean.PrettyPrinter.Unexpander._@._hyg.201"]},
    "scope":
    {"varDecls": ["variable {α : Type u}"],
     "openDecl": [],
@@ -436,7 +434,7 @@
     "start": {"line": 35, "column": 0},
     "finish": {"line": 35, "column": 32}},
    "pp":
-   " @[ scoped  app_unexpander  BEq.beq  ]  meta  def  _aux___unexpand_BEq_beq_1  :  Lean.PrettyPrinter.Unexpander  :=  fun  |  `(  $  f  :  ident  $  lhs  $  rhs  )  =>  withRef  f  `(  $  lhs   ≋   $  rhs  )  |  _  =>  throw  (  ) ",
+   " @[ scoped  app_unexpander  BEq.beq  ]  def  _aux___unexpand_BEq_beq_1  :  Lean.PrettyPrinter.Unexpander  :=  fun  |  `(  $  f  :  ident  $  lhs  $  rhs  )  =>  withRef  f  `(  $  lhs   ≋   $  rhs  )  |  _  =>  throw  (  ) ",
    "name": "_aux___unexpand_BEq_beq_1",
    "modifiers":
    {"visibility": "regular",
@@ -444,7 +442,7 @@
     "isUnsafe": false,
     "isProtected": false,
     "docString": null,
-    "computeKind": "meta",
+    "computeKind": "regular",
     "attributes": ["scoped  app_unexpander  BEq.beq"]},
    "kind": "definition",
    "fullName": "Demo._aux___unexpand_BEq_beq_1",
@@ -751,22 +749,22 @@
   {"value":
    {"range":
     {"synthetic": false,
-     "start": {"line": 72, "column": 39},
+     "start": {"line": 72, "column": 32},
      "finish": {"line": 73, "column": 7}},
     "pp": ":=\n  a + t",
     "constants": ["t", "a"]},
    "type":
    {"range":
     {"synthetic": false,
-     "start": {"line": 72, "column": 35},
-     "finish": {"line": 72, "column": 38}},
+     "start": {"line": 72, "column": 28},
+     "finish": {"line": 72, "column": 31}},
     "pp": "Nat",
     "constants": ["Nat"]},
    "signature":
    {"range":
     {"synthetic": false,
-     "start": {"line": 72, "column": 23},
-     "finish": {"line": 72, "column": 38}},
+     "start": {"line": 72, "column": 16},
+     "finish": {"line": 72, "column": 31}},
     "pp": "(a : Nat) : Nat",
     "constants": ["a", "Nat"]},
    "scope":
@@ -780,10 +778,10 @@
    {"synthetic": false,
     "start": {"line": 72, "column": 0},
     "finish": {"line": 73, "column": 7}},
-   "pp": "public def public_test (a : Nat) : Nat :=\n  a + t",
+   "pp": "def public_test (a : Nat) : Nat :=\n  a + t",
    "name": "public_test",
    "modifiers":
-   {"visibility": "public",
+   {"visibility": "regular",
     "recKind": "default",
     "isUnsafe": false,
     "isProtected": false,
@@ -795,8 +793,8 @@
    "binders":
    {"range":
     {"synthetic": false,
-     "start": {"line": 72, "column": 23},
-     "finish": {"line": 72, "column": 32}},
+     "start": {"line": 72, "column": 16},
+     "finish": {"line": 72, "column": 25}},
     "pp": "(a : Nat)",
     "map": [{"type": "Nat", "id": "a", "binderInfo": "default"}],
     "groups": ["(a : Nat)"]}}]}
