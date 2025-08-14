@@ -12,13 +12,14 @@ Inspired by <https://github.com/frenzymath/jixia>
 def getModifiers (stx : Syntax) (ctx: ContextInfo): DeclModifiers :=
   match stx with
   | .node _ ``Command.declModifiers _ =>
+    let visibility := (stx[2].getOptional?.map (·.prettyPrint.pretty.trim)).getD "regular"
     { docString := stx[0].getOptional?.map (fun stx =>
         { content := stx.prettyPrint.pretty, range := stx.toRange ctx }),
-      visibility := (stx[2].getOptional?.map (·.prettyPrint.pretty.trim)).getD "regular",
-      computeKind := (stx[4].getOptional?.map (·.prettyPrint.pretty.trim)).getD "regular",
-      isProtected := !stx[3].isNone,
-      isUnsafe := !stx[5].isNone,
-      recKind := (stx[6].getOptional?.map (·.prettyPrint.pretty.trim)).getD "default",
+      visibility := visibility,
+      computeKind := (stx[3].getOptional?.map (·.prettyPrint.pretty.trim)).getD "regular",
+      isProtected := visibility == "protected",
+      isUnsafe := !stx[4].isNone,
+      recKind := (stx[5].getOptional?.map (·.prettyPrint.pretty.trim)).getD "default",
       attributes := stx[1].getArgs.toList.flatMap parseAttributes, }
   | _ => {}
   where
