@@ -111,7 +111,7 @@ def addCommandToTrie (cmdText : String)
   let mut newTrie := currentTrie
   for (incState, _) in incStates do
     let prefixPos := incState.cmdPos.byteIdx
-    let cmdPrefix : String := (cmdText.take prefixPos).trimAscii.toString
+    let cmdPrefix : String := (cmdText.take prefixPos).trim
     newTrie := REPL.Util.Trie.insert newTrie cmdPrefix incState
 
   modify fun s => { s with envTries := s.envTries.insert envId? newTrie }
@@ -130,7 +130,7 @@ def recordProofSnapshot (proofState : ProofSnapshot) : M m Nat := do
 /-- Find the best incremental state using trie-based prefix matching -/
 def findBestIncrementalState (newCmd : String) (envId? : Option Nat) : M m (Option IncrementalState) := do
   let state ← get
-  let trimmedCmd := newCmd.trimAscii.toString
+  let trimmedCmd := newCmd.trim
   let trie? := state.envTries.get? envId?
   match trie? with
   | none => return none
@@ -176,7 +176,7 @@ def tactics (trees : List InfoTree) (env? : Option Environment) : M m (List Tact
   trees.flatMap InfoTree.tactics |>.mapM
     fun ⟨ctx, stx, rootGoals, goals, pos, endPos, ns⟩ => do
       let proofState := some (← ProofSnapshot.create ctx none env? goals rootGoals)
-      let goals := s!"{(← ctx.ppGoals goals)}".trimAscii.toString
+      let goals := s!"{(← ctx.ppGoals goals)}".trim
       let tactic := Format.pretty (← ppTactic ctx stx)
       let proofStateId ← proofState.mapM recordProofSnapshot
       return Tactic.of goals tactic pos endPos proofStateId ns
@@ -193,7 +193,7 @@ def collectRootGoalsAsSorries (trees : List InfoTree) (env? : Option Environment
   trees.flatMap InfoTree.rootGoals |>.mapM
     fun ⟨ctx, goals, pos⟩ => do
       let proofState := some (← ProofSnapshot.create ctx none env? goals goals)
-      let goals := s!"{(← ctx.ppGoals goals)}".trimAscii.toString
+      let goals := s!"{(← ctx.ppGoals goals)}".trim
       let proofStateId ← proofState.mapM recordProofSnapshot
       return Sorry.of goals pos pos proofStateId
 
@@ -454,10 +454,10 @@ open REPL
 /-- Get lines from stdin until a blank line is entered. -/
 partial def getLines : IO String := do
   let line ← (← IO.getStdin).getLine
-  if line.trimAscii.isEmpty then
+  if line.trim.isEmpty then
     return line
   else
-    return line.trimAsciiEnd.toString ++ (← getLines)
+    return line.trimRight ++ (← getLines)
 
 instance [ToJson α] [ToJson β] : ToJson (α ⊕ β) where
   toJson x := match x with
