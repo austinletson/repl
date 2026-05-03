@@ -6,3 +6,5 @@
 /test/*.olean
 /test/*.olean.tmp
 /test/*.produced.out
+/logs/
+/patch_test_logs/

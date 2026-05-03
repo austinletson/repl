@@ -1,88 +1,189 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Script to update Lean version
-# Usage: ./update_lean_version.sh <new_version> [--skip-mathlib]
-# Example: ./update_lean_version.sh v4.21.0
-# Example: ./update_lean_version.sh v4.21.0 --skip-mathlib
+# Update this patch to a Lean version.
 #
-# When --skip-mathlib is provided, the script will:
-# - Skip running lake update in test/Mathlib
-# - Comment out Mathlib tests in test.sh
+# Usage:
+#   ./update_lean_version.sh <new_version> [--skip-mathlib] [--allow-dirty]
+#     [--log-file PATH]
+#
+# Examples:
+#   ./update_lean_version.sh v4.30.0-rc2
+#   ./update_lean_version.sh v4.30.0-rc2 --skip-mathlib
+#
+# If the Lean version has no matching Mathlib tag, Mathlib dependency updates
+# and Mathlib tests are disabled automatically.
 
-set -e  # Exit immediately if a command exits with a non-zero status
+set -euo pipefail
 
+MATHLIB_REPO="https://github.com/leanprover-community/mathlib4.git"
 SKIP_MATHLIB=false
+ALLOW_DIRTY=false
+LOG_FILE=""
 
-if [[ "$#" -lt 1 || "$#" -gt 2 ]]; then
-    echo "Usage: $0 <new_version> [--skip-mathlib]"
-    echo "Example: $0 v4.21.0"
-    echo "Example: $0 v4.21.0 --skip-mathlib"
-    exit 1
+usage() {
+  cat <<'USAGE'
+Usage: ./update_lean_version.sh <new_version> [options]
+
+Options:
+  --skip-mathlib      Do not update Mathlib dependencies or run Mathlib tests.
+                      This is also selected automatically when Mathlib has no tag.
+  --allow-dirty       Allow tracked local changes before the script starts.
+  --log-file PATH     Write command output to PATH. Default: logs/update_lean_version-<version>-<timestamp>.commands.log.
+  -h, --help          Show this help.
+USAGE
+}
+
+if [[ $# -lt 1 ]]; then
+  usage >&2
+  exit 1
+fi
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  usage
+  exit 0
 fi
 
 NEW_VERSION="$1"
+shift
 
-if [[ "$#" -eq 2 && "$2" == "--skip-mathlib" ]]; then
-    SKIP_MATHLIB=true
-    echo "Mathlib tests will be skipped"
-fi
-echo "Updating Lean version to $NEW_VERSION"
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --skip-mathlib)
+      SKIP_MATHLIB=true
+      shift
+      ;;
+    --allow-dirty)
+      ALLOW_DIRTY=true
+      shift
+      ;;
+    --log-file)
+      LOG_FILE="${2:?missing value for --log-file}"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown argument: $1" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+done
 
-# Update main lean-toolchain
-echo "Updating main lean-toolchain..."
-echo "leanprover/lean4:$NEW_VERSION" > lean-toolchain
-
-# Update test/Mathlib/lean-toolchain if it exists
-if [ -f "test/Mathlib/lean-toolchain" ]; then
-    echo "Updating test/Mathlib/lean-toolchain..."
-    echo "leanprover/lean4:$NEW_VERSION" > test/Mathlib/lean-toolchain
-fi
-
-# Update version in lakefile.toml
-if [ -f "test/Mathlib/lakefile.toml" ]; then
-    echo "Updating mathlib revision in test/Mathlib/lakefile.toml..."
-    sed -i "s/rev = \"v[0-9]\+\.[0-9]\+\.[0-9]\+\(-[a-zA-Z0-9]\+\)*\"/rev = \"$NEW_VERSION\"/" test/Mathlib/lakefile.toml
-fi
-
-# Remove .lake folders
-echo "Removing .lake folders..."
-rm -rf .lake
-rm -rf test/Mathlib/.lake
-
-# Run lake update in test/Mathlib if we're not skipping Mathlib
-if [ "$SKIP_MATHLIB" = false ] && [ -d "test/Mathlib" ]; then
-    echo "Running lake update in test/Mathlib..."
-    cd test/Mathlib
-    lake update
-    cd ../..
+if [[ ! "$NEW_VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([-A-Za-z0-9.]+)?$ ]]; then
+  echo "Expected a Lean version like v4.30.0 or v4.30.0-rc2, got: $NEW_VERSION" >&2
+  exit 1
 fi
 
-# Build the project in the root folder
-echo "Building project in root folder..."
-lake build
+safe_version="${NEW_VERSION//[^A-Za-z0-9._-]/_}"
+timestamp="$(date +%Y%m%d_%H%M%S)"
 
-# Modify test.sh based on --skip-mathlib option
-echo "Updating test.sh file..."
-if [ "$SKIP_MATHLIB" = true ]; then
-    # Check if the line has already been marked as SKIPPED
-    if grep -q "# Run the Mathlib tests - SKIPPED" test.sh; then
-        # Already marked as SKIPPED, no need to change
-        echo "Mathlib tests already marked as SKIPPED"
-    else
-        # Comment out the mathlib test lines if they are not already commented
-        sed -i '/^# Run the Mathlib tests/ s/^# Run the Mathlib tests/# Run the Mathlib tests - SKIPPED/' test.sh
-        sed -i '/^cp lean-toolchain test\/Mathlib\// s/^/# /' test.sh
-        sed -i '/^cd test\/Mathlib\/ && .\/test.sh/ s/^/# /' test.sh
-    fi
+if [[ -z "$LOG_FILE" ]]; then
+  mkdir -p logs
+  LOG_FILE="logs/update_lean_version-${safe_version}-${timestamp}.commands.log"
 else
-    # Uncomment the mathlib test lines if they are commented
-    sed -i 's/^# Run the Mathlib tests - SKIPPED/# Run the Mathlib tests/' test.sh
-    sed -i 's/^# cp lean-toolchain test\/Mathlib\//cp lean-toolchain test\/Mathlib\//' test.sh
-    sed -i 's/^# cd test\/Mathlib\/ && .\/test.sh/cd test\/Mathlib\/ \&\& .\/test.sh/' test.sh
+  mkdir -p "$(dirname "$LOG_FILE")"
 fi
 
-# Run tests
-echo "Running tests..."
-lake exe test
+exec > >(tee -a "$LOG_FILE") 2>&1
 
-echo "Lean version updated successfully to $NEW_VERSION!"
+log() {
+  printf '[%s] %s\n' "$(date +'%Y-%m-%d %H:%M:%S')" "$*"
+}
+
+run() {
+  log "RUN: $*"
+  "$@"
+}
+
+write_if_changed() {
+  local path="$1"
+  local content="$2"
+  if [[ -f "$path" ]] && [[ "$(cat "$path")" == "$content" ]]; then
+    log "unchanged: $path"
+  else
+    log "write: $path"
+    printf '%s\n' "$content" > "$path"
+  fi
+}
+
+mathlib_tag_exists() {
+  git ls-remote --exit-code --tags "$MATHLIB_REPO" "refs/tags/$NEW_VERSION" >/dev/null 2>&1
+}
+
+update_mathlib_lakefile_lean() {
+  local path="$1"
+  if [[ -f "$path" ]]; then
+    log "update Mathlib revision in $path"
+    sed -i -E '/mathlib4/ s#@ "v[^"]+"#@ "'"$NEW_VERSION"'"#' "$path"
+  fi
+}
+
+update_mathlib_lakefile_toml() {
+  local path="$1"
+  if [[ -f "$path" ]]; then
+    log "update Mathlib revision in $path"
+    sed -i -E 's#rev = "v[^"]+"#rev = "'"$NEW_VERSION"'"#' "$path"
+  fi
+}
+
+log "Log file: $LOG_FILE"
+log "Updating Lean version to $NEW_VERSION"
+log "Current branch: $(git branch --show-current 2>/dev/null || echo unknown)"
+log "Current HEAD: $(git rev-parse --short HEAD 2>/dev/null || echo unknown)"
+
+if [[ "$ALLOW_DIRTY" != true ]]; then
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    log "Tracked local changes are present. Re-run with --allow-dirty only if this is intentional."
+    git status --short
+    exit 1
+  fi
+fi
+
+MATHLIB_AVAILABLE=false
+if [[ "$SKIP_MATHLIB" == true ]]; then
+  log "Mathlib explicitly skipped."
+elif mathlib_tag_exists; then
+  MATHLIB_AVAILABLE=true
+  log "Found Mathlib tag $NEW_VERSION."
+else
+  SKIP_MATHLIB=true
+  log "No Mathlib tag found for $NEW_VERSION; Mathlib dependency update and tests will be skipped."
+fi
+
+write_if_changed "lean-toolchain" "leanprover/lean4:$NEW_VERSION"
+
+if [[ "$MATHLIB_AVAILABLE" == true ]]; then
+  if [[ -f "test/Mathlib/lean-toolchain" ]]; then
+    write_if_changed "test/Mathlib/lean-toolchain" "leanprover/lean4:$NEW_VERSION"
+  fi
+  update_mathlib_lakefile_lean "test/Mathlib/lakefile.lean"
+  update_mathlib_lakefile_toml "test/Mathlib/lakefile.toml"
+else
+  log "Leaving test/Mathlib dependency files unchanged because Mathlib is unavailable or skipped."
+fi
+
+log "Removing generated Lake build directories."
+run rm -rf .lake test/Mathlib/.lake
+
+if [[ "$MATHLIB_AVAILABLE" == true ]]; then
+  log "Updating Mathlib Lake manifest."
+  (cd test/Mathlib && run lake update)
+fi
+
+log "Building root project."
+run lake build
+
+if [[ "$MATHLIB_AVAILABLE" == true ]]; then
+  log "Running root and Mathlib tests."
+  export RUN_MATHLIB=1
+  run lake exe test
+else
+  log "Running root tests with Mathlib disabled."
+  export RUN_MATHLIB=0
+  run lake exe test
+fi
+
+log "Update completed for $NEW_VERSION."
