@@ -15,6 +15,10 @@ This is a fork of the original Lean REPL that supports multiple Lean versions. T
 
 ## Changelog
 
+### v1.3.16
+
+- Add support for Lean v4.28.1, v4.29.1, and v4.30.0-rc2
+
 ### v1.3.15
 
 - Add support for Lean v4.29.0-rc2 to v4.30.0-rc1
