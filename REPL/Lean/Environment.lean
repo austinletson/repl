@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Kim Morrison
 -/
 import REPL.Util.Pickle
-import REPL.Lean.Replay
+import Lean.Replay
 
 open System (FilePath)
 
@@ -32,6 +32,6 @@ def unpickle (path : FilePath) : IO (Environment × CompactedRegion) := unsafe d
   let ((imports, map₂), region) ← _root_.unpickle (Array Import × PHashMap Name ConstantInfo) path
   enableInitializersExecution
   let env ← importModules imports {} 0 (loadExts := true)
-  return (replayToElabEnv env (Std.HashMap.ofList map₂.toList), region)
+  return (← env.replay (Std.HashMap.ofList map₂.toList), region)
 
 end Lean.Environment
