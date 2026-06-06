@@ -1,9 +1,9 @@
 {"messages":
- [{"severity": "error",
+ [{"severity": "warning",
    "pos": {"line": 69, "column": 8},
    "endPos": {"line": 69, "column": 16},
    "data":
-   "The declaration `t` should not be an instance as its return type `Nat` is not a type class."}],
+   "instance `t` must be marked with `@[reducible]` or `@[implicit_reducible]`"}],
  "env": 0,
  "declarations":
  [{"value":
