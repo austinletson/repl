@@ -20,5 +20,17 @@ jobs:
     - name: build
       run: lake build
 
+    - name: Decide whether to run Mathlib tests
+      run: |
+        set -euo pipefail
+        LEAN_VERSION="$(sed 's#^leanprover/lean4:##' lean-toolchain)"
+        if git ls-remote --exit-code --tags https://github.com/leanprover-community/mathlib4.git "refs/tags/${LEAN_VERSION}" >/dev/null 2>&1; then
+          echo "RUN_MATHLIB=1" >> "$GITHUB_ENV"
+          echo "Mathlib tag ${LEAN_VERSION} found; Mathlib tests enabled."
+        else
+          echo "RUN_MATHLIB=0" >> "$GITHUB_ENV"
+          echo "Mathlib tag ${LEAN_VERSION} not found; Mathlib tests disabled."
+        fi
+
     - name: Run tests
       run: lake exe test
